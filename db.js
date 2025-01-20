@@ -14,8 +14,25 @@ function selectCostumer(id){
 }
 
 function insertCostumer(customer){
-  
     costumers.push(customer);
+}
+
+function updateCostumer(id,costumerData){
+    const costumer = costumers.find(c => c.id);
+
+    if(!costumer) return;
+
+    costumer.nome = costumerData.nome;
+    costumer.idade = costumerData.idade;
+    costumer.uf = costumerData.uf;
+   
+}
+
+function deleteCostumer(id){
+
+    const index = costumers.findIndex(c => c.id === id);
+
+    costumers.splice(index,1);
 
 }
 
@@ -24,5 +41,7 @@ function insertCostumer(customer){
 module.exports = {
      selectCostumers,
      selectCostumer,
-     insertCostumer
+     insertCostumer,
+     updateCostumer,
+     deleteCostumer
 }
