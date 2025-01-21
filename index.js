@@ -8,6 +8,7 @@ app.use(express.json());
 
 
 
+
 app.post("/clientes",(request,response)=>{
     const customer = request.body;
     db.insertCostumer(customer);
@@ -31,13 +32,15 @@ app.delete("/clientes/:id",(request,response)=>{
 
 
 
-app.get("/clientes",(request,response)=>{
-    response.json(db.selectCostumers());
+app.get("/clientes",async (request,response)=>{
+   const results = await db.selectCostumers();
+   response.json(results);
 });
 
-app.get("/cliente/:id",(request,response)=>{
+app.get("/clientes/:id",async (request,response)=>{
     const id = parseInt(request.params.id);
-    response.json(db.selectCostumer(id));
+    const results = await db.selectCostumer(id);
+    results.json(results); 
 });
 
 
